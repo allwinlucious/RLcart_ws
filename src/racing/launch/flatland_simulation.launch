@@ -1,7 +1,7 @@
 <launch>
   <!-- Set arguments to make quick change of settings possible -->
   <arg name="world_path"   default="$(find racing)/resources/racing_world.yaml"/>
-  <arg name="update_rate" default="800.0"/>
+  <arg name="update_rate" default="200.0"/>
   <arg name="step_size" default="0.005"/>
   <arg name="pub_debug_viz" default="true"/>
   <arg name="viz_pub_rate" default="30.0"/>

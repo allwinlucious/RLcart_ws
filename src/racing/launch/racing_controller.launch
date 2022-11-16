@@ -7,15 +7,33 @@
     <param name="vehicle/sensor_topic" value="$(arg sensor_topic)" type="str"/>
 
     <node name="vehicle_controller" pkg="racing" type="vehicle_controller_node" output="screen"/-->
-    
-    <!-- RLvehicle_controller -->
+
+    <!-- vehicle random action -->
+    <!--arg name="sensor_topic" default="vehicle/lidar_measurements"/>
+    <arg name="actuator_topic" default="vehicle/actuator_commands"/>
+
+    <param name="vehicle/actuator_topic" value="$(arg actuator_topic)" type="str"/>
+    <param name="vehicle/sensor_topic" value="$(arg sensor_topic)" type="str"/>
+
+    <node name="vehicle_controller" pkg="racing" type="randomaction.py" output="screen"/-->
+
+    <!-- RL learn -->
     <arg name="sensor_topic" default="vehicle/lidar_measurements"/>
     <arg name="actuator_topic" default="vehicle/actuator_commands"/>
 
     <param name="vehicle/actuator_topic" value="$(arg actuator_topic)" type="str"/>
     <param name="vehicle/sensor_topic" value="$(arg sensor_topic)" type="str"/>
 
-    <node name="RL_vehicle_controller" pkg="racing" type="RLcontroller_train.py" output="screen"/>
+    <node name="vehicle_controller" pkg="racing" type="RL_learn.py" output="screen"/>
+    
+    <!-- RLvehicle_controller -->
+    <!--arg name="sensor_topic" default="vehicle/lidar_measurements"/>
+    <arg name="actuator_topic" default="vehicle/actuator_commands"/>
+
+    <param name="vehicle/actuator_topic" value="$(arg actuator_topic)" type="str"/>
+    <param name="vehicle/sensor_topic" value="$(arg sensor_topic)" type="str"/>
+
+    <node name="RL_vehicle_controller" pkg="racing" type="RLcontroller_train.py" output="screen"/-->
     <!-- vehicle_timer (lap time measurement) -->
     <arg name="position_topic" default="odometry/ground_truth"/>
     <param name="vehicle/position_topic" value="$(arg position_topic)" type="str"/>

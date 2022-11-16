@@ -133,7 +133,7 @@ class racing_cart(Env):
             #self.reward += -1/1000
             #calculate distance covered
             #self.reward+= np.sqrt((self.state[0]-self.prev_x)**2 + (self.state[1]-self.prev_y)**2)
-            self.reward += np.sqrt(np.square(self.state[2])+np.square(self.state[2]))/100
+            self.reward += np.sqrt(np.square(self.state[2])+np.square(self.state[3]))/100
         # is goal reached?
         if self.isFinished(self.state):
             print("lap over")
@@ -210,9 +210,10 @@ rospy.loginfo("Vehicle controller publishes to: %s", publish_topic_actuators)
 env = racing_cart()
 check_env(env)
 
-model = PPO('MlpPolicy', env, verbose=1,seed=1337,tensorboard_log="./PPO_tensorboard/")
-model.learn(total_timesteps=1e6,progress_bar=True,reset_num_timesteps=False,tb_log_name="first_run")
-model.save("PPO_racing_cart_tb_1")
+#model = PPO('MlpPolicy', env, verbose=1,seed=1337,tensorboard_log="./PPO_tensorboard/")
+model= PPO.load("PPO_racing_cart_tb_2",env=env)
+model.learn(total_timesteps=2e6,progress_bar=True,reset_num_timesteps=False,tb_log_name="third_run")
+model.save("PPO_racing_cart_tb_3")
 """ model= PPO.load("PPO_racing_cart4",env=env)
 model.learn(total_timesteps=3e5,progress_bar=True,reset_num_timesteps=False)
 model.save("PPO_racing_cart5")
