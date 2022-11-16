@@ -64,6 +64,6 @@ add_dependencies(vehicle_timer_node ${catkin_EXPORTED_TARGETS})
 target_include_directories(vehicle_timer_node PRIVATE ${catkin_INCLUDE_DIRS})
 target_link_libraries(vehicle_timer_node ${catkin_LIBRARIES})
 
-catkin_install_python(PROGRAMS scripts/reset_node.py scripts/timer_node.py scripts/check_crash.py scripts/RLcontroller_train.py scripts/RL_learn.py
+catkin_install_python(PROGRAMS scripts/RLcontroller_train.py scripts/RL_learn.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
