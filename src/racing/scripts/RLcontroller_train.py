@@ -123,7 +123,6 @@ class racing_cart(Env):
         if isCrashed(self.state):
             #rospy.loginfo("Crashed")
             self.done = True
-            print('reward :',self.reward)
             self.reward += -100
             return self.observation, self.reward, self.done, self.info
         else:
@@ -210,14 +209,11 @@ rospy.loginfo("Vehicle controller publishes to: %s", publish_topic_actuators)
 env = racing_cart()
 check_env(env)
 
-#model = PPO('MlpPolicy', env, verbose=1,seed=1337,tensorboard_log="./PPO_tensorboard/")
-model= PPO.load("PPO_racing_cart_tb_2",env=env)
-model.learn(total_timesteps=2e6,progress_bar=True,reset_num_timesteps=False,tb_log_name="third_run")
-model.save("PPO_racing_cart_tb_3")
-""" model= PPO.load("PPO_racing_cart4",env=env)
+
+model= PPO.load("PPO_racing_cart3",env=env)
 model.learn(total_timesteps=3e5,progress_bar=True,reset_num_timesteps=False)
-model.save("PPO_racing_cart5")
-model= PPO.load("PPO_racing_cart5",env=env)
+model.save("PPO_racing_cart4")
+"""model= PPO.load("PPO_racing_cart5",env=env)
 model.learn(total_timesteps=3e5,progress_bar=True,reset_num_timesteps=False)
 model.save("PPO_racing_cart6")
 model= PPO.load("PPO_racing_cart6",env=env)

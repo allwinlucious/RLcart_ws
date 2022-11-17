@@ -152,7 +152,7 @@ class racetrack_env(Env):
     def __init__(self):
 
         #define action and observation space
-        self.observation_space = Box(low=np.array([-1,-1,-1,-1,-1]),high=np.array([1,1,1,1,1]), shape=(5,), dtype=np.float32)
+        self.observation_space = Box(low=np.array([0,0,0,0,0]),high=np.array([40,40,40,40,40]), shape=(5,), dtype=np.float32)
         self.action_space = Box(low=np.array([-1,-1]), high=np.array([1,1]),shape=(2,), dtype=np.float32)
         
         self.agent = racecar()
@@ -178,10 +178,19 @@ class racetrack_env(Env):
 rospy.init_node('vehicle_controller')
 rospy.loginfo("Vehicle controller started.")
 
-
+n_episodes= 10
 env = racetrack_env()
 check_env(env)
-
-model = PPO('MlpPolicy', env, verbose=1,seed=1337,tensorboard_log="./PPO_tensorboard/")
-model.learn(total_timesteps=1e6,progress_bar=True,reset_num_timesteps=False,tb_log_name="first_run")
-model.save("PPO_racing_cart_tb1")
+rate = rospy.Rate(50) # 50hz
+model= PPO.load("PPO_racing_cart3",env=env)    
+for episode in range(n_episodes):
+    obs = env.reset()
+    done = False
+    while  not rospy.is_shutdown():
+        action, _ = model.predict(obs, deterministic=True)
+        action = action.reshape(2,)
+        obs, reward, done, info = env.step(action)
+        if done == True:
+            break
+        rate.sleep()
+rospy.spin()

@@ -1,4 +1,0 @@
-<launch>
-<include file="$(dirname)/racing_controller.launch" />
-<include file="$(dirname)/flatland_simulation.launch" />
-</launch>

@@ -29,41 +29,15 @@ catkin_package(INCLUDE_DIRS include
     flatland_msgs)
 
 # add a building output: a library independent of ROS
-add_library(racing_library
-    src/VehicleController.cpp)
 
 # add a building output: a ROS-node that wraps the ROS-independent library
-add_executable(vehicle_controller_node src/vehicle_controller_node.cpp)
-
 add_executable(vehicle_timer_node src/vehicle_timer_node.cpp)
-
-# Define headers for this library. PUBLIC headers are used by compiling by the exteral developers, and will be added to
-# consumers' build paths.
-target_include_directories(racing_library PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-    PRIVATE src)
-
-# Set the install directories to the correct locations (provided by catkin)
-install(TARGETS racing_library vehicle_controller_node EXPORT RacingLibraryConfig
-    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(DIRECTORY include/ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
-
-# Link the ROS node to the ROS-independent libraray
-target_link_libraries(vehicle_controller_node racing_library)
-
-# Link the ROS node to the ROS packages used to encode send and receive signals
-add_dependencies(vehicle_controller_node ${catkin_EXPORTED_TARGETS})
-target_include_directories(vehicle_controller_node PRIVATE ${catkin_INCLUDE_DIRS})
-target_link_libraries(vehicle_controller_node ${catkin_LIBRARIES})
 
 # Link the node to the ROS packages used to encode send and receive signals.
 add_dependencies(vehicle_timer_node ${catkin_EXPORTED_TARGETS})
 target_include_directories(vehicle_timer_node PRIVATE ${catkin_INCLUDE_DIRS})
 target_link_libraries(vehicle_timer_node ${catkin_LIBRARIES})
 
-catkin_install_python(PROGRAMS scripts/RLcontroller_train.py scripts/RL_learn.py
+catkin_install_python(PROGRAMS scripts/RLcontroller_train.py scripts/RL_learn.py scripts/RL_controller.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
