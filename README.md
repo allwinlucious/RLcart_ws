@@ -5,9 +5,16 @@ Simulation setup provided as part of Automated and Connected Driving Challenges 
 Proximal Policy Optmization was used.
 
 Reward function:
+
+
 lap complete : +1000
+
+
 crash        : -100
+
+
 everytimestep: linear velocity/100
+
 
 ### Result:
 after ~1M iterations, the model is able to navigate the race track without major crashes for a lap. lap time was recorded to be 11-16 seconds. This can be improved  with further training.
