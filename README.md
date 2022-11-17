@@ -2,6 +2,12 @@
 ## Reinforcement Based Controller for a Race car simulation
 
 Simulation setup provided as part of Automated and Connected Driving Challenges [course](https://www.ika.rwth-aachen.de/en/education/students/lectures/3769-acdc.html)
+Proximal Policy Optmization was used.
+
+Reward function:
+lap complete : +1000
+crash        : -100
+everytimestep: linear velocity/100
 
 ### Result:
 after ~1M iterations, the model is able to navigate the race track without major crashes for a lap. lap time was recorded to be 11-16 seconds. This can be improved  with further training.
