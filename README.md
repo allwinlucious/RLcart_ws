@@ -9,7 +9,7 @@ lap complete : +1000
 
 crash        : -100
 
-everytimestep: linear velocity/100
+everytimestep: +linear-velocity/100
 
 
 ### Result:
