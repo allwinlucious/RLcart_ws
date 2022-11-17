@@ -6,7 +6,10 @@ Simulation setup provided as part of Automated and Connected Driving Challenges 
 ### Result:
 after ~1M iterations, the model is able to navigate the race track without major crashes for a lap. lap time was recorded to be 11-16 seconds. This can be improved  with further training.
 
-https://user-images.githubusercontent.com/15308488/202494783-b1c17a73-7e5b-48b1-920b-fd41b717b815.mp4
+
+
+https://user-images.githubusercontent.com/15308488/202496267-83247441-2916-47ac-bf98-174021926e8b.mp4
+
 
 
 ### To train the controller :
