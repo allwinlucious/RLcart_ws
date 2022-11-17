@@ -1,5 +1,4 @@
-# ROS_RL_race
-## Reinforcement Based Controller for a Race car simulation
+# Reinforcement Based Controller for a Race car simulation
 
 Simulation setup provided as part of Automated and Connected Driving Challenges [course](https://www.ika.rwth-aachen.de/en/education/students/lectures/3769-acdc.html)
 Proximal Policy Optmization was used.
