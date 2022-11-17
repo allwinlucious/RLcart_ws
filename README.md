@@ -6,12 +6,9 @@ Proximal Policy Optmization was used.
 
 Reward function:
 
-
 lap complete : +1000
 
-
 crash        : -100
-
 
 everytimestep: linear velocity/100
 
